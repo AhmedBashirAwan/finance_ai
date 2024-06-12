@@ -82,7 +82,7 @@ def create_budget(request: BudgetRequest):
         pred_values = {}
         for target in targets:
             pred_values[target] = models[target].predict(preddf).item()
-        return {"predicted_values": pred_values}
+        return  pred_values
 
     elif request.choice in [2, 3]:
         # Ensure predy and gets are populated
@@ -99,7 +99,7 @@ def create_budget(request: BudgetRequest):
                 diff = predy[i] * 0.2
                 if abs(predy[i] - gets[i]) > abs(diff):
                     comparison_results.append(f"{targets[i]} is taking too much, restrain it to around {predy[i]}")
-            return {"comparison_results": comparison_results}
+            return comparison_results
 
         elif request.choice == 3:
             # Debt Paying
@@ -152,8 +152,7 @@ def create_budget(request: BudgetRequest):
                         debt_results.append("If you budget according to average you can pay in around 1 month")
                     else:
                         debt_results.append(f"If you budget according to average you can pay in around {round(v2)} months")
-
-            return {"debt_results": debt_results}
+            return debt_results
     
     else:
         raise HTTPException(status_code=400, detail="Invalid choice")
