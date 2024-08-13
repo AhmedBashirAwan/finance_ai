@@ -7,7 +7,7 @@
     ],
     "routes": [
         {
-            "src": "/budget/(.*)",
+            "src": "/budget",
             "dest": "main.py"
         }
     ]
