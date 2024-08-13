@@ -71,7 +71,7 @@ class BudgetRequest(BaseModel):
     choice: int
 
 # Define the POST endpoint
-@app.post("/budget/")
+@app.post("/")
 def create_budget(request: BudgetRequest):
     bi = request.basic_income
     peeps = request.number_of_people
